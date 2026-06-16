@@ -29,7 +29,7 @@ class ToolUpdateService {
   );
 
   static const _githubAPI =
-      'https://api.github.com/repos/meetrevision/revision-tool/releases/latest';
+      'https://api.github.com/repos/LFT-OXY/chinhaeos-revision-tool/releases/latest';
 
   static final Directory _tempDir = Directory.systemTemp;
 

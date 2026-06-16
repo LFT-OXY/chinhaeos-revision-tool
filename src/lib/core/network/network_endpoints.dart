@@ -1,6 +1,6 @@
 enum GitHubRepositoryEndpoint {
-  revisionTool(api: 'meetrevision/revision-tool'),
-  cabPackages(api: 'meetrevision/packages');
+  revisionTool(api: 'LFT-OXY/chinhaeos-revision-tool'),
+  cabPackages(api: 'LFT-OXY/chinhaeos-packages');
 
   const GitHubRepositoryEndpoint({required this.api});
 
