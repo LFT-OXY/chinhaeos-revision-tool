@@ -7,26 +7,35 @@ import 'package:vector_graphics/vector_graphics.dart';
 
 enum RouteSection { main, footer, search }
 
+// 导航重构:移除 home 与 tweaks 父级,5 个调整页直接提升为顶级导航项。
+// 注意:左栏高亮依赖枚举声明顺序与导航窗格位置一一对应
+// (getPaneIndexFromRoute 直接返回 route.index),
+// 因此声明顺序必须为「主导航项(按窗格顺序)→ 页脚项」。
 enum RouteMeta {
-  home(
-    path: '/',
+  tweaksSecurity(
+    path: '/security',
     section: RouteSection.main,
-    icon: SvgPicture(
-      AssetBytesLoader('assets/icon/pane/ic_revi_fluent_home_color.svg.vec'),
-      width: 20,
-      height: 20,
-    ),
+    icon: msicons.FluentIcons.shield_lock_20_regular,
   ),
-  tweaks(
-    path: '/tweaks',
+  tweaksPerformance(
+    path: '/performance',
     section: RouteSection.main,
-    icon: SvgPicture(
-      AssetBytesLoader(
-        'assets/icon/pane/ic_revi_fluent_wrench_24_color.svg.vec',
-      ),
-      width: 20,
-      height: 20,
-    ),
+    icon: msicons.FluentIcons.top_speed_24_regular,
+  ),
+  tweaksPersonalization(
+    path: '/personalization',
+    section: RouteSection.main,
+    icon: msicons.FluentIcons.color_24_regular,
+  ),
+  tweaksUtilities(
+    path: '/utilities',
+    section: RouteSection.main,
+    icon: msicons.FluentIcons.toolbox_24_regular,
+  ),
+  tweaksUpdates(
+    path: '/updates',
+    section: RouteSection.main,
+    icon: msicons.FluentIcons.arrow_download_24_regular,
   ),
   msStore(
     path: '/msstore',
@@ -47,31 +56,6 @@ enum RouteMeta {
       width: 20,
       height: 20,
     ),
-  ),
-  tweaksSecurity(
-    path: '/tweaks/security',
-    section: RouteSection.search,
-    icon: msicons.FluentIcons.shield_lock_20_regular,
-  ),
-  tweaksPerformance(
-    path: '/tweaks/performance',
-    section: RouteSection.search,
-    icon: msicons.FluentIcons.top_speed_24_regular,
-  ),
-  tweaksPersonalization(
-    path: '/tweaks/personalization',
-    section: RouteSection.search,
-    icon: msicons.FluentIcons.color_24_regular,
-  ),
-  tweaksUtilities(
-    path: '/tweaks/utilities',
-    section: RouteSection.search,
-    icon: msicons.FluentIcons.toolbox_24_regular,
-  ),
-  tweaksUpdates(
-    path: '/tweaks/updates',
-    section: RouteSection.search,
-    icon: msicons.FluentIcons.arrow_download_24_regular,
   );
 
   const RouteMeta({
@@ -86,8 +70,6 @@ enum RouteMeta {
 
   String get label {
     return switch (this) {
-      RouteMeta.home => t.pageHome,
-      RouteMeta.tweaks => t.pageTweaks,
       RouteMeta.msStore => t.pageMSStore,
       RouteMeta.settings => t.pageSettings,
       RouteMeta.tweaksSecurity => t.pageTweaksSecurity,
@@ -204,8 +186,11 @@ class AppRoutes {
 }
 
 const List<RouteMeta> _mainNavigationRoutes = [
-  RouteMeta.home,
-  RouteMeta.tweaks,
+  RouteMeta.tweaksSecurity,
+  RouteMeta.tweaksPerformance,
+  RouteMeta.tweaksPersonalization,
+  RouteMeta.tweaksUtilities,
+  RouteMeta.tweaksUpdates,
   RouteMeta.msStore,
 ];
 

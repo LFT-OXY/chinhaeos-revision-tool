@@ -3,13 +3,11 @@ import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../extensions.dart';
-import '../../features/home/home_page.dart';
 import '../../features/ms_store/ms_store_page.dart';
 import '../../features/ms_store/ms_store_product_page.dart';
 import '../../features/tweaks/performance/performance_page.dart';
 import '../../features/tweaks/personalization/personalization_page.dart';
 import '../../features/tweaks/security/security_page.dart';
-import '../../features/tweaks/tweaks_page.dart';
 import '../../features/tweaks/updates/updates_page.dart';
 import '../../features/tweaks/utilities/utilities_page.dart';
 import '../../main.dart';
@@ -28,7 +26,7 @@ final _shellNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'shell');
 GoRouter appRouter(Ref ref) {
   final router = GoRouter(
     navigatorKey: rootNavigatorKey,
-    initialLocation: initialRoute ?? RouteMeta.home.path,
+    initialLocation: initialRoute ?? RouteMeta.tweaksSecurity.path,
     redirect: (context, state) {
       if (!WinRegistryService.isSupported) {
         return AppRoutes.unsupported;
@@ -42,67 +40,32 @@ GoRouter appRouter(Ref ref) {
           return AppShell(shellContext: context, child: child);
         },
         routes: [
+          // 5 个调整页提升为顶级路由,与 msstore/settings 同级,
+          // 通过左栏直接切换(行为与其它顶级项一致)。
           GoRoute(
-            path: RouteMeta.home.path,
-            name: 'home',
-            builder: (context, state) => const HomePage(),
+            path: RouteMeta.tweaksSecurity.path,
+            name: 'security',
+            builder: (context, state) => const SecurityPage(),
           ),
           GoRoute(
-            path: RouteMeta.tweaks.path,
-            name: 'tweaks',
-            builder: (context, state) => const TweaksPage(),
-            routes: [
-              GoRoute(
-                path: 'security',
-                name: 'security',
-                pageBuilder: (context, state) =>
-                    AppRoutes.buildPageWithHorizontalTransition(
-                      barrierColor: context.theme.scaffoldBackgroundColor,
-                      state: state,
-                      child: const SecurityPage(),
-                    ),
-              ),
-              GoRoute(
-                path: 'performance',
-                name: 'performance',
-                pageBuilder: (context, state) =>
-                    AppRoutes.buildPageWithHorizontalTransition(
-                      barrierColor: context.theme.scaffoldBackgroundColor,
-                      state: state,
-                      child: const PerformancePage(),
-                    ),
-              ),
-              GoRoute(
-                path: 'personalization',
-                name: 'personalization',
-                pageBuilder: (context, state) =>
-                    AppRoutes.buildPageWithHorizontalTransition(
-                      barrierColor: context.theme.scaffoldBackgroundColor,
-                      state: state,
-                      child: const PersonalizationPage(),
-                    ),
-              ),
-              GoRoute(
-                path: 'utilities',
-                name: 'utilities',
-                pageBuilder: (context, state) =>
-                    AppRoutes.buildPageWithHorizontalTransition(
-                      barrierColor: context.theme.scaffoldBackgroundColor,
-                      state: state,
-                      child: const UtilitiesPage(),
-                    ),
-              ),
-              GoRoute(
-                path: 'updates',
-                name: 'updates',
-                pageBuilder: (context, state) =>
-                    AppRoutes.buildPageWithHorizontalTransition(
-                      barrierColor: context.theme.scaffoldBackgroundColor,
-                      state: state,
-                      child: const UpdatesPage(),
-                    ),
-              ),
-            ],
+            path: RouteMeta.tweaksPerformance.path,
+            name: 'performance',
+            builder: (context, state) => const PerformancePage(),
+          ),
+          GoRoute(
+            path: RouteMeta.tweaksPersonalization.path,
+            name: 'personalization',
+            builder: (context, state) => const PersonalizationPage(),
+          ),
+          GoRoute(
+            path: RouteMeta.tweaksUtilities.path,
+            name: 'utilities',
+            builder: (context, state) => const UtilitiesPage(),
+          ),
+          GoRoute(
+            path: RouteMeta.tweaksUpdates.path,
+            name: 'updates',
+            builder: (context, state) => const UpdatesPage(),
           ),
           GoRoute(
             path: RouteMeta.msStore.path,

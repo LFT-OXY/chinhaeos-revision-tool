@@ -123,11 +123,22 @@ class AppSettingsNotifier extends _$AppSettingsNotifier {
       accentColor: accentColor,
       navigationPaneTheme: NavigationPaneThemeData(
         iconPadding: const EdgeInsetsDirectional.only(start: 10.5, end: 10),
-        backgroundColor: effectColor(const Color.fromARGB(255, 32, 32, 32)),
-        overlayBackgroundColor: const .fromARGB(255, 32, 32, 32),
+        backgroundColor: effectColor(const Color(0xFF191C20)),
+        overlayBackgroundColor: const Color(0xFF191C20),
+        // A 的天蓝淡色选中高光:选中项解析 tileColor 时状态为 hovered
+        // (选中+悬停为 pressed),据此返回淡蓝即可点亮选中项。
+        tileColor: WidgetStateProperty.resolveWith<Color?>((states) {
+          if (states.contains(WidgetState.pressed)) {
+            return const Color(0xFF5AA0E0).withValues(alpha: 0.20);
+          }
+          if (states.contains(WidgetState.hovered)) {
+            return const Color(0xFF5AA0E0).withValues(alpha: 0.14);
+          }
+          return null;
+        }),
       ),
       scaffoldBackgroundColor: effectColor(
-        const Color.fromARGB(255, 32, 32, 32),
+        const Color(0xFF1C1F24),
       ),
       visualDensity: VisualDensity.standard,
       focusTheme: FocusThemeData(glowFactor: isLargeScreen ? 2.0 : 0.0),
@@ -138,7 +149,7 @@ class AppSettingsNotifier extends _$AppSettingsNotifier {
           modifyColors: true,
         )!,
         cardBackgroundFillColorDefault: effectColor(
-          const Color(0xFF2B2B2B),
+          const Color(0xFF26292E),
           micaBackgroundColor: const Color.fromARGB(
             255,
             255,
@@ -162,10 +173,20 @@ class AppSettingsNotifier extends _$AppSettingsNotifier {
       navigationPaneTheme: NavigationPaneThemeData(
         iconPadding: const EdgeInsetsDirectional.only(start: 10.5, end: 10),
         backgroundColor: effectColor(null),
-        overlayBackgroundColor: const Color.fromRGBO(243, 243, 243, 100),
+        overlayBackgroundColor: const Color(0xFFF6F7F9),
+        // A 的天蓝淡色选中高光(浅色)
+        tileColor: WidgetStateProperty.resolveWith<Color?>((states) {
+          if (states.contains(WidgetState.pressed)) {
+            return const Color(0xFF3F6FB0).withValues(alpha: 0.16);
+          }
+          if (states.contains(WidgetState.hovered)) {
+            return const Color(0xFF3F6FB0).withValues(alpha: 0.10);
+          }
+          return null;
+        }),
       ),
       scaffoldBackgroundColor: effectColor(
-        const Color.fromRGBO(243, 243, 243, 100),
+        const Color(0xFFF6F7F9),
       ),
       focusTheme: FocusThemeData(glowFactor: isLargeScreen ? 2.0 : 0.0),
       resources: ResourceDictionary.light(
@@ -175,7 +196,7 @@ class AppSettingsNotifier extends _$AppSettingsNotifier {
         )!,
         cardBackgroundFillColorDefault: effectColor(
           // card color
-          const Color(0xFFFBFBFB),
+          const Color(0xFFFFFFFF),
           micaBackgroundColor: const Color.fromARGB(255, 251, 251, 251),
         )!,
         cardBackgroundFillColorSecondary: effectColor(
@@ -221,6 +242,18 @@ AccentColor getSystemAccentColor(SystemAccentColor accentColor) {
   }
   return Colors.red;
 }
+
+/// 固定品牌强调色:Fluent Evolved 天蓝色板(取代跟随 Windows 系统的强调色)。
+/// 浅色取 normal(#3F6FB0)一档,深色 Fluent 会自动取 light(#5AA0E0)一档。
+final AccentColor brandAccentColor = AccentColor.swatch(const {
+  'darkest': Color(0xFF24496F),
+  'darker': Color(0xFF2B5685),
+  'dark': Color(0xFF34699F),
+  'normal': Color(0xFF3F6FB0),
+  'light': Color(0xFF5AA0E0),
+  'lighter': Color(0xFF74B2E8),
+  'lightest': Color(0xFF9CC6EE),
+});
 
 class SettingsService {
   factory SettingsService() => _instance;

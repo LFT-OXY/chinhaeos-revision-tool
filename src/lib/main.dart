@@ -127,7 +127,8 @@ class MyApp extends ConsumerWidget {
     return SystemThemeBuilder(
       builder: (context, accent) {
         final bool isLargeScreen = is10footScreen(context);
-        final AccentColor accentColor = getSystemAccentColor(accent);
+        // 固定品牌强调色(Fluent Evolved 天蓝),不再跟随 Windows 系统强调色
+        final AccentColor accentColor = brandAccentColor;
 
         return FluentApp.router(
           routerConfig: ref.read(appRouterProvider),
