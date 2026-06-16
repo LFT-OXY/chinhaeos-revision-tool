@@ -31,7 +31,7 @@ String appLanguage =
       r'SOFTWARE\Revision\Revision Tool',
       'Language',
     ) ??
-    'en';
+    'zhCn';
 
 final String ameTemp = path.join(
   Directory.systemTemp.path,

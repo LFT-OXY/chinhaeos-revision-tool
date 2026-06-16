@@ -83,7 +83,7 @@ Future<void> main(List<String> args) async {
       Registry.localMachine,
       r'SOFTWARE\Revision\Revision Tool',
       'Language',
-      AppLocale.en.name,
+      AppLocale.zhCn.name,
     );
   }
 
