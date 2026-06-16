@@ -1,0 +1,129 @@
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - '*'
+name: "Build & Release"
+jobs:
+  build:
+    name: Build & Release
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+
+      # https://github.com/subosito/flutter-action/issues/278
+      # - name: Export pub environment variable
+      #   run: |
+      #     if [ "$RUNNER_OS" == "Windows" ]; then
+      #       echo "PUB_CACHE=$LOCALAPPDATA\\Pub\\Cache" >> $GITHUB_ENV
+      #     fi
+      #   shell: bash
+    
+      - run: echo "NEW_VERSION=${{ github.ref_name }}" | Out-File -FilePath $env:GITHUB_ENV -Append
+
+      - name: Bump MyAppVersion in Inno Setup
+        run: |
+          (Get-Content -Path "inno-setup.iss") -replace '#define MyAppVersion "[\d\.]+"', "#define MyAppVersion `"${{ env.NEW_VERSION }}`"" | Set-Content -Path "inno-setup.iss"
+        shell: pwsh
+      
+      - name: Compile C code
+        run: gcc -shared -o process_checker.dll process_checker.c -lpsapi -O3
+        working-directory: native_utils
+      
+      - name: Download bundled WinSxS packages
+        run: |
+          $path = "src\additionals\packages\winsxs"
+          New-Item -Path $path -ItemType Directory -Force | Out-Null
+
+          Write-Host "Fetching latest packages from meetrevision/packages..."
+          $release = Invoke-RestMethod -Uri "https://api.github.com/repos/meetrevision/packages/releases/latest"
+          
+          $cabAssets = $release.assets | Where-Object { $_.name -like "*.cab" }
+          Write-Host "Downloading $($cabAssets.Count) packages..."
+          
+          foreach ($asset in $cabAssets) {
+            $fileName = $asset.name
+            $downloadUrl = $asset.browser_download_url
+            $filePath = "$path\$fileName"
+            
+            Write-Host "  Downloading $fileName..."
+            Invoke-WebRequest -Uri $downloadUrl -OutFile $filePath
+          }
+          
+          Write-Host "Downloaded $($cabAssets.Count) packages successfully"
+        shell: pwsh
+
+      - run: dart run slang
+        working-directory: src
+
+      - name: Compile SVG vectors
+        shell: pwsh
+        working-directory: src
+        run: |
+          $svgRoot = "assets/icon/pane"
+          if (-not (Test-Path -Path $svgRoot)) {
+            throw "SVG root not found: $svgRoot"
+          }
+
+          $svgs = Get-ChildItem -Path $svgRoot -Filter *.svg -Recurse -File
+          if ($svgs.Count -eq 0) {
+            Write-Host "No SVG files found under $svgRoot"
+            exit 0
+          }
+
+          foreach ($svg in $svgs) {
+            $inputPath = $svg.FullName
+            $outputPath = "$inputPath.vec"
+            Write-Host "Compiling $($svg.FullName) -> $outputPath"
+            dart run vector_graphics_compiler -i "$inputPath" -o "$outputPath"
+          }
+
+      - run: dart run build_runner build --force-aot
+        working-directory: src
+
+      - name: Build revitool CLI
+        run: dart compile exe src/lib/main_cli.dart -o revitool.exe --define=APP_VERSION=${{ env.NEW_VERSION }} 
+      
+      - name: Run tests
+        continue-on-error: true
+        run: flutter test --reporter=expanded --dart-define=SKIP_INTEGRATION=true
+        working-directory: src
+
+      - name: Enable Administrator Privileges for revitool CLI app
+        shell: pwsh
+        run: |
+          & "${env:ProgramFiles(x86)}\Windows Kits\10\bin\10.0.26100.0\x64\mt.exe" -nologo -manifest src/windows/app.manifest -outputresource:revitool.exe;1
+
+      - name: Build revitool GUI
+        run: flutter build windows --build-name=${{ env.NEW_VERSION }} --build-number=1 --obfuscate --split-debug-info=/symbols --dart-define=APP_VERSION=${{ env.NEW_VERSION }}
+        working-directory: src
+
+      - name: Install Inno Setup
+        run: choco install innosetup -y
+        shell: powershell
+      
+      - name: Build Installer
+        run: |
+          git clone https://github.com/DomGries/InnoDependencyInstaller
+          copy InnoDependencyInstaller\CodeDependencies.iss .
+          "%programfiles(x86)%\Inno Setup 6\iscc.exe" "inno-setup.iss"
+        shell: cmd
+
+      - name: Calculate SHA256 hash
+        run: |
+          $hash = Get-FileHash "RevisionTool-Setup.exe" -Algorithm SHA256
+          echo "SHA256_HASH=$($hash.Hash)" | Out-File -FilePath $env:GITHUB_ENV -Append
+        
+      - name: Release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.TOKEN }}
+          file: RevisionTool-Setup.exe
+          asset_name: RevisionTool-Setup.exe
+          tag: ${{ github.ref }}
+          overwrite: true
+          body: "SHA256: `${{ env.SHA256_HASH }}`"
