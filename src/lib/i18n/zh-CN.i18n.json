@@ -97,7 +97,7 @@
     "tweaksPerformanceMemoryCompression": "内存压缩",
     "tweaksPerformanceMemoryCompressionDescription": "通过压缩在后台运行的未使用程序来节省内存。根据硬件，可能对 CPU 使用率产生轻微影响",
     "tweaksPerformanceServiceGrouping": "服务分组模式",
-    "tweaksPerformanceServiceGroupingDescription": "推荐是 ReviOS 的默认值。使用强制可显着减少内存使用；但是，某些功能（如 Xbox）可能无法按预期工作。",
+    "tweaksPerformanceServiceGroupingDescription": "推荐是 chinhaeOS 的默认值。使用强制可显着减少内存使用；但是，某些功能（如 Xbox）可能无法按预期工作。",
     "tweaksPerformanceServiceGroupingDialog": "此选项可能会破坏某些服务，例如 Xbox。使用风险自负。可以通过将其更改回“推荐”来恢复",
     "tweaksPerformanceLastTimeAccess": "NTFS 上次访问时间",
     "tweaksPerformanceLastTimeAccessDescription": "禁用上次访问时间可提高文件和目录访问性能，减少磁盘 I/O 负载和延迟",
@@ -160,5 +160,5 @@
     "tweaksUpdatesWUPage": "隐藏 Windows 更新页面",
     "tweaksUpdatesWUPageDescription": "显示此页面也将启用更新通知",
     "tweaksUpdatesWUDrivers": "通过 Windows 更新安装驱动程序",
-    "tweaksUpdatesWUDriversDescription": "要在 ReviOS 中安装驱动程序，您需要在设置中手动检查更新，因为不支持自动 Windows 更新"
+    "tweaksUpdatesWUDriversDescription": "要在 chinhaeOS 中安装驱动程序，您需要在设置中手动检查更新，因为不支持自动 Windows 更新"
 }

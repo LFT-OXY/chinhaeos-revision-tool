@@ -101,7 +101,7 @@
     "tweaksPerformanceMemoryCompression": "Memory Compression",
     "tweaksPerformanceMemoryCompressionDescription": "Save memory by compressing unused programs running in the background. Might have a small impact on CPU usage depending on hardware",
     "tweaksPerformanceServiceGrouping": "Service Grouping Mode",
-    "tweaksPerformanceServiceGroupingDescription": "Recommended is the default for ReviOS. Use Forced to significantly reduce memory usage; however, some features like Xbox may not work as expected.",
+    "tweaksPerformanceServiceGroupingDescription": "Recommended is the default for chinhaeOS. Use Forced to significantly reduce memory usage; however, some features like Xbox may not work as expected.",
     "tweaksPerformanceServiceGroupingDialog": "This option may break some services, such as Xbox. Use it at your own risk. It can be reverted by changing it back to \u0027Recommended\u0027",
     "tweaksPerformanceLastTimeAccess": "NTFS Last Access Time",
     "tweaksPerformanceLastTimeAccessDescription": "Disabling Last Time Access improves the performance of file and directory access, reduces disk I/O load and latency",
@@ -160,5 +160,5 @@
     "tweaksUpdatesWUPage": "Hide the Windows Updates page",
     "tweaksUpdatesWUPageDescription": "Showing this page will also enable update notifications",
     "tweaksUpdatesWUDrivers": "Drivers install through Windows Updates",
-    "tweaksUpdatesWUDriversDescription": "To install drivers in ReviOS, you need to manually check for updates in Settings, as automatic Windows Updates are not supported"
+    "tweaksUpdatesWUDriversDescription": "To install drivers in chinhaeOS, you need to manually check for updates in Settings, as automatic Windows Updates are not supported"
 }
