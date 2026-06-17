@@ -2,7 +2,11 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+// 用纯 Dart 的 riverpod 核心包，而非 flutter_riverpod：
+// 本文件经 ms_store_command 进入 CLI 的 `dart compile exe` 图，flutter_riverpod 会
+// 拖入 package:flutter/widgets.dart → dart:ui，导致 CLI 无法编译（GUI 不受影响，
+// flutter_riverpod 本就 re-export 同一个 Provider）。
+import 'package:riverpod/riverpod.dart';
 
 import '../../utils.dart';
 import '../error/app_exception.dart';
