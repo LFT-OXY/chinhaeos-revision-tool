@@ -35,7 +35,7 @@
     "pageSettings": "Налаштування",
     "suggestionBoxPlaceholder": "Знайти налаштування",
     "homeWelcome": "Ласкаво просимо до Revision",
-    "homeDescription": "Інструмент для налаштування ReviOS під ваші потреби",
+    "homeDescription": "Інструмент для налаштування chinhaeOS під ваші потреби",
     "homeReviLink": "Відвідати Revision",
     "homeReviFAQLink": "Відвідати FAQ",
     "homeCardGithub": "GitHub",
@@ -97,7 +97,7 @@
     "tweaksPerformanceMemoryCompression": "Стиснення пам\u0027яті",
     "tweaksPerformanceMemoryCompressionDescription": "Економте пам\u0027ять, стискаючи невикористовувані програми, що працюють у фоні. Може незначно впливати на використання CPU залежно від обладнання",
     "tweaksPerformanceServiceGrouping": "Режим групування служб",
-    "tweaksPerformanceServiceGroupingDescription": "Рекомендований - за замовчуванням для ReviOS. Використовуйте Примусовий для значного зниження використання пам\u0027яті; однак деякі функції, такі як Xbox, можуть працювати некоректно.",
+    "tweaksPerformanceServiceGroupingDescription": "Рекомендований - за замовчуванням для chinhaeOS. Використовуйте Примусовий для значного зниження використання пам\u0027яті; однак деякі функції, такі як Xbox, можуть працювати некоректно.",
     "tweaksPerformanceServiceGroupingDialog": "Ця опція може порушити роботу деяких служб, таких як Xbox. Використовуйте на свій страх і ризик. Можна скасувати, повернувши на \u0027Рекомендований\u0027",
     "tweaksPerformanceLastTimeAccess": "NTFS Last Access Time",
     "tweaksPerformanceLastTimeAccessDescription": "Вимкнення Last Time Access покращує продуктивність доступу до файлів та каталогів, знижує навантаження I/O диска та затримки",
@@ -160,5 +160,5 @@
     "tweaksUpdatesWUPage": "Приховати сторінку Windows Updates",
     "tweaksUpdatesWUPageDescription": "Відображення цієї сторінки також увімкне сповіщення про оновлення",
     "tweaksUpdatesWUDrivers": "Встановлення драйверів через Windows Updates",
-    "tweaksUpdatesWUDriversDescription": "Щоб встановити драйвери в ReviOS, потрібно вручну перевіряти оновлення в Налаштуваннях, оскільки автоматичні оновлення Windows не підтримуються"
+    "tweaksUpdatesWUDriversDescription": "Щоб встановити драйвери в chinhaeOS, потрібно вручну перевіряти оновлення в Налаштуваннях, оскільки автоматичні оновлення Windows не підтримуються"
 }

@@ -14,12 +14,12 @@ import 'winsxs_exceptions.dart';
 
 enum WinPackageType {
   systemComponentsRemoval(
-    packageName: 'Revision-ReviOS-SystemPackages-Removal',
+    packageName: 'Revision-chinhaeOS-SystemPackages-Removal',
   ),
-  defenderRemoval(packageName: 'Revision-ReviOS-Defender-Removal'),
-  aiRemoval(packageName: 'Revision-ReviOS-AI-Removal'),
-  oneDriveRemoval(packageName: 'Revision-ReviOS-OneDrive-Removal'),
-  xboxRemoval(packageName: 'Revision-ReviOS-Xbox-Removal');
+  defenderRemoval(packageName: 'Revision-chinhaeOS-Defender-Removal'),
+  aiRemoval(packageName: 'Revision-chinhaeOS-AI-Removal'),
+  oneDriveRemoval(packageName: 'Revision-chinhaeOS-OneDrive-Removal'),
+  xboxRemoval(packageName: 'Revision-chinhaeOS-Xbox-Removal');
 
   const WinPackageType({required this.packageName});
 

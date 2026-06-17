@@ -39,8 +39,8 @@ jobs:
           $path = "src\additionals\packages\winsxs"
           New-Item -Path $path -ItemType Directory -Force | Out-Null
 
-          Write-Host "Fetching latest packages from meetrevision/packages..."
-          $release = Invoke-RestMethod -Uri "https://api.github.com/repos/meetrevision/packages/releases/latest"
+          Write-Host "Fetching latest packages from LFT-OXY/chinhaeos-packages..."
+          $release = Invoke-RestMethod -Uri "https://api.github.com/repos/LFT-OXY/chinhaeos-packages/releases/latest"
           
           $cabAssets = $release.assets | Where-Object { $_.name -like "*.cab" }
           Write-Host "Downloading $($cabAssets.Count) packages..."

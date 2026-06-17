@@ -63,7 +63,7 @@ abstract class WinRegistryService {
   static final bool isAmdCpu = _cpuVendorIdentifier.contains('amd');
 
   static final bool isAmePlaybook = Directory(
-    '${Directory.systemTemp.path}\\AME\\Playbooks\\Revision-ReviOS',
+    '${Directory.systemTemp.path}\\AME\\Playbooks\\Revision-chinhaeOS',
   ).existsSync();
 
   static bool get isSupported {
@@ -73,13 +73,13 @@ abstract class WinRegistryService {
               r'SOFTWARE\Microsoft\Windows NT\CurrentVersion',
               'EditionSubVersion',
             ) ==
-            'ReviOS' ||
+            'chinhaeOS' ||
         readString(
               RegistryHive.localMachine,
               r'SOFTWARE\Microsoft\Windows NT\CurrentVersion',
               'EditionSubManufacturer',
             ) ==
-            'MeetRevision';
+            'Chinhae';
   }
 
   static bool _validate() {
@@ -91,11 +91,11 @@ abstract class WinRegistryService {
 
     try {
       return key.subkeyNames
-          .lastWhere((element) => element.startsWith('Revision-ReviOS'))
+          .lastWhere((element) => element.startsWith('Revision-chinhaeOS'))
           .isNotEmpty;
     } catch (e) {
       if (!isAmePlaybook) {
-        logger.w('Error validating ReviOS');
+        logger.w('Error validating chinhaeOS');
       }
       return false;
     } finally {

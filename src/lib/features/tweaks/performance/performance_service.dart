@@ -283,7 +283,7 @@ class PerformanceServiceImpl implements PerformanceService {
 
   /// Revision's custom power plan based on Windows's Ultimate Performance with additional changes.
   ///
-  /// Power Scheme GUID change is intentional to match the ReviOS Playbook's UniqueId.
+  /// Power Scheme GUID change is intentional to match the chinhaeOS Playbook's UniqueId.
   ///
   /// For more info:
   /// https://learn.microsoft.com/en-us/windows-server/administration/performance-tuning/hardware/power/power-performance-tuning#processor-performance-increase-and-decrease-of-thresholds-and-policies

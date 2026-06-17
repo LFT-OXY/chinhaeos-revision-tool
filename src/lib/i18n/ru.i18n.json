@@ -35,7 +35,7 @@
     "pageSettings": "Настройки",
     "suggestionBoxPlaceholder": "Найти настройку",
     "homeWelcome": "Добро пожаловать в Revision",
-    "homeDescription": "Инструмент для настройки ReviOS под ваши нужды",
+    "homeDescription": "Инструмент для настройки chinhaeOS под ваши нужды",
     "homeReviLink": "Посетить Revision",
     "homeReviFAQLink": "Посетить FAQ",
     "homeCardGithub": "GitHub",
@@ -101,7 +101,7 @@
     "tweaksPerformanceMemoryCompression": "Сжатие памяти",
     "tweaksPerformanceMemoryCompressionDescription": "Экономьте память, сжимая неиспользуемые программы, работающие в фоне. Может незначительно влиять на использование CPU в зависимости от оборудования",
     "tweaksPerformanceServiceGrouping": "Режим группировки служб",
-    "tweaksPerformanceServiceGroupingDescription": "Рекомендуемый - по умолчанию для ReviOS. Используйте Принудительный для значительного снижения использования памяти; однако некоторые функции, такие как Xbox, могут работать некорректно.",
+    "tweaksPerformanceServiceGroupingDescription": "Рекомендуемый - по умолчанию для chinhaeOS. Используйте Принудительный для значительного снижения использования памяти; однако некоторые функции, такие как Xbox, могут работать некорректно.",
     "tweaksPerformanceServiceGroupingDialog": "Эта опция может нарушить работу некоторых служб, таких как Xbox. Используйте на свой страх и риск. Можно отменить, вернув на \u0027Рекомендуемый\u0027",
     "tweaksPerformanceLastTimeAccess": "NTFS Last Access Time",
     "tweaksPerformanceLastTimeAccessDescription": "Отключение Last Time Access улучшает производительность доступа к файлам и каталогам, снижает нагрузку I/O диска и задержки",
@@ -160,5 +160,5 @@
     "tweaksUpdatesWUPage": "Скрыть страницу Windows Updates",
     "tweaksUpdatesWUPageDescription": "Отображение этой страницы также включит уведомления об обновлениях",
     "tweaksUpdatesWUDrivers": "Установка драйверов через Windows Updates",
-    "tweaksUpdatesWUDriversDescription": "Чтобы установить драйверы в ReviOS, нужно вручную проверять обновления в Настройках, так как автоматические обновления Windows не поддерживаются"
+    "tweaksUpdatesWUDriversDescription": "Чтобы установить драйверы в chinhaeOS, нужно вручную проверять обновления в Настройках, так как автоматические обновления Windows не поддерживаются"
 }

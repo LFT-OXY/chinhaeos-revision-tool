@@ -35,7 +35,7 @@
     "pageSettings": "Ustawienia",
     "suggestionBoxPlaceholder": "Znajdź ustawienie",
     "homeWelcome": "Witamy w Revision",
-    "homeDescription": "Narzędzie do personalizacji ReviOS według Twoich potrzeb",
+    "homeDescription": "Narzędzie do personalizacji chinhaeOS według Twoich potrzeb",
     "homeReviLink": "Sprawdź Revision",
     "homeReviFAQLink": "Sprawdź FAQ",
     "homeCardGithub": "GitHub",
@@ -101,7 +101,7 @@
     "tweaksPerformanceMemoryCompression": "Kompresja pamięci",
     "tweaksPerformanceMemoryCompressionDescription": "Oszczędza pamięć przez kompresję nieużywanych programów działających w tle. Może nieznacznie zwiększyć użycie CPU w zależności od sprzętu",
     "tweaksPerformanceServiceGrouping": "Tryb grupowania usług",
-    "tweaksPerformanceServiceGroupingDescription": "Domyślnie zalecany dla ReviOS. Użyj Wymuszonego, aby znacznie zmniejszyć użycie pamięci; jednak niektóre funkcje, takie jak Xbox, mogą działać nieprawidłowo.",
+    "tweaksPerformanceServiceGroupingDescription": "Domyślnie zalecany dla chinhaeOS. Użyj Wymuszonego, aby znacznie zmniejszyć użycie pamięci; jednak niektóre funkcje, takie jak Xbox, mogą działać nieprawidłowo.",
     "tweaksPerformanceServiceGroupingDialog": "Ta opcja może naruszyć działanie niektórych usług, takich jak Xbox. Używasz na własne ryzyko. Można cofnąć, przywracając wartość do „Zalecany”",
     "tweaksPerformanceLastTimeAccess": "Ostatni czas dostępu NTFS",
     "tweaksPerformanceLastTimeAccessDescription": "Wyłączenie ostatniego czasu dostępu poprawia wydajność dostępu do plików i katalogów, zmniejsza obciążenie I/O dysku i opóźnienia",
@@ -160,5 +160,5 @@
     "tweaksUpdatesWUPage": "Ukryj stronę aktualizacji Windows",
     "tweaksUpdatesWUPageDescription": "Pokazanie tej strony również włączy powiadomienia o aktualizacjach",
     "tweaksUpdatesWUDrivers": "Sterowniki instalowane przez Windows Update",
-    "tweaksUpdatesWUDriversDescription": "Aby zainstalować sterowniki w ReviOS, musisz ręcznie sprawdzić aktualizacje w Ustawieniach, ponieważ automatyczne aktualizacje Windows nie są obsługiwane"
+    "tweaksUpdatesWUDriversDescription": "Aby zainstalować sterowniki w chinhaeOS, musisz ręcznie sprawdzić aktualizacje w Ustawieniach, ponieważ automatyczne aktualizacje Windows nie są obsługiwane"
 }

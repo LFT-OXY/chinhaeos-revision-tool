@@ -35,7 +35,7 @@
     "pageSettings": "الإعدادات",
     "suggestionBoxPlaceholder": "البحث عن إعداد",
     "homeWelcome": "مرحبًا بكم في Revision",
-    "homeDescription": "أداة لتخصيص ReviOS حسب احتياجاتك",
+    "homeDescription": "أداة لتخصيص chinhaeOS حسب احتياجاتك",
     "homeReviLink": "تفقّد Revision",
     "homeReviFAQLink": "تفقّد الأسئلة الشائعة",
     "homeCardGithub": "GitHub",
@@ -101,7 +101,7 @@
     "tweaksPerformanceMemoryCompression": "ضغط الذاكرة",
     "tweaksPerformanceMemoryCompressionDescription": "وفر الذاكرة عن طريق ضغط البرامج غير المستخدمة التي تعمل في الخلفية. قد يكون له تأثير طفيف على استخدام وحدة المعالجة المركزية اعتمادًا على الأجهزة",
     "tweaksPerformanceServiceGrouping": "وضع تجميع الخدمات",
-    "tweaksPerformanceServiceGroupingDescription": "الموصى به هو الافتراضي لـ ReviOS. استخدم \u0027إجباري\u0027 لتقليل استخدام الذاكرة بشكل كبير؛ ومع ذلك، قد لا تعمل بعض الميزات مثل Xbox كما هو متوقع.",
+    "tweaksPerformanceServiceGroupingDescription": "الموصى به هو الافتراضي لـ chinhaeOS. استخدم \u0027إجباري\u0027 لتقليل استخدام الذاكرة بشكل كبير؛ ومع ذلك، قد لا تعمل بعض الميزات مثل Xbox كما هو متوقع.",
     "tweaksPerformanceServiceGroupingDialog": "قد يكسر هذا الخيار بعض الخدمات، مثل Xbox. استخدمه على مسؤوليتك الخاصة. يمكن التراجع عنه بتغييره مرة أخرى إلى \u0027موصى به\u0027",
     "tweaksPerformanceLastTimeAccess": "وقت الوصول الأخير لـ NTFS",
     "tweaksPerformanceLastTimeAccessDescription": "تعطيل وقت الوصول الأخير يحسن أداء الوصول إلى الملفات والدلائل، ويقلل تحميل الإدخال/الإخراج للقرص والكمون",
@@ -160,5 +160,5 @@
     "tweaksUpdatesWUPage": "إخفاء صفحة تحديثات Windows",
     "tweaksUpdatesWUPageDescription": "سيؤدي إظهار هذه الصفحة أيضًا إلى تمكين إشعارات التحديث",
     "tweaksUpdatesWUDrivers": "تثبيت برامج التشغيل من خلال تحديثات Windows",
-    "tweaksUpdatesWUDriversDescription": "لتثبيت برامج التشغيل في ReviOS، تحتاج إلى التحقق يدويًا من التحديثات في الإعدادات، حيث لا يتم دعم تحديثات Windows التلقائية"
+    "tweaksUpdatesWUDriversDescription": "لتثبيت برامج التشغيل في chinhaeOS، تحتاج إلى التحقق يدويًا من التحديثات في الإعدادات، حيث لا يتم دعم تحديثات Windows التلقائية"
 }

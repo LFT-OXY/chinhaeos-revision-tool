@@ -35,7 +35,7 @@
     "pageSettings": "Setări",
     "suggestionBoxPlaceholder": "Căutați o setare",
     "homeWelcome": "Bun venit la Revision",
-    "homeDescription": "Un instrument pentru a personaliza ReviOS nevoilor dumneavoastră",
+    "homeDescription": "Un instrument pentru a personaliza chinhaeOS nevoilor dumneavoastră",
     "homeReviLink": "Vizitați Revision",
     "homeReviFAQLink": "Vizitați FAQ",
     "homeCardGithub": "GitHub",
@@ -101,7 +101,7 @@
     "tweaksPerformanceMemoryCompression": "Compresie Memorie",
     "tweaksPerformanceMemoryCompressionDescription": "Economisiți memorie comprimând programele neutilizate care rulează în fundal. Poate avea un impact mic asupra utilizării CPU în funcție de hardware",
     "tweaksPerformanceServiceGrouping": "Mod Gruparg Servicii",
-    "tweaksPerformanceServiceGroupingDescription": "Recomandat este implicit pentru ReviOS. Folosiți Forțat pentru a reduce semnificativ utilizarea memoriei; totuși, unele caracteristici precum Xbox pot să nu funcționeze cum este de așteptat.",
+    "tweaksPerformanceServiceGroupingDescription": "Recomandat este implicit pentru chinhaeOS. Folosiți Forțat pentru a reduce semnificativ utilizarea memoriei; totuși, unele caracteristici precum Xbox pot să nu funcționeze cum este de așteptat.",
     "tweaksPerformanceServiceGroupingDialog": "Această opțiune poate strica unele servicii, cum ar fi Xbox. Folosiți pe propriul risc. Poate fi anulat schimbându-l înapoi la \u0027Recomandat\u0027",
     "tweaksPerformanceLastTimeAccess": "NTFS Last Access Time",
     "tweaksPerformanceLastTimeAccessDescription": "Dezactivarea Last Time Access îmbunătățește performanța accesului la fișiere și directoare, reduce încărcarea I/O a discului și latența",
@@ -160,5 +160,5 @@
     "tweaksUpdatesWUPage": "Ascundere pagina Windows Updates",
     "tweaksUpdatesWUPageDescription": "Afișarea acestei pagini va activa și notificările de actualizare",
     "tweaksUpdatesWUDrivers": "Instalare drivere prin Windows Updates",
-    "tweaksUpdatesWUDriversDescription": "Pentru a instala drivere în ReviOS, trebuie să verificați manual actualizările în Setări, deoarece Actualizările Automate Windows nu sunt acceptate"
+    "tweaksUpdatesWUDriversDescription": "Pentru a instala drivere în chinhaeOS, trebuie să verificați manual actualizările în Setări, deoarece Actualizările Automate Windows nu sunt acceptate"
 }

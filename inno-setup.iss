@@ -3,8 +3,8 @@
 
 #define MyAppName "Revision Tool"
 #define MyAppVersion "1.0.0"
-#define MyAppPublisher "MeetRevision"
-#define MyAppURL "https://revi.cc/"
+#define MyAppPublisher "Chinhae"
+#define MyAppURL "https://os.3oxy.com/"
 #define MyAppExeName "revitoolw.exe"
 #include "CodeDependencies.iss"
 

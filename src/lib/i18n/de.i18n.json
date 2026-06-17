@@ -35,7 +35,7 @@
     "pageSettings": "Einstellungen",
     "suggestionBoxPlaceholder": "Einstellung suchen",
     "homeWelcome": "Willkommen bei Revision",
-    "homeDescription": "Ein Tool, um ReviOS an Ihre Bedürfnisse anzupassen",
+    "homeDescription": "Ein Tool, um chinhaeOS an Ihre Bedürfnisse anzupassen",
     "homeReviLink": "Revision ansehen",
     "homeReviFAQLink": "FAQ ansehen",
     "homeCardGithub": "GitHub",
@@ -101,7 +101,7 @@
     "tweaksPerformanceMemoryCompression": "Speicherkomprimierung",
     "tweaksPerformanceMemoryCompressionDescription": "Sparen Sie Speicher, indem Sie ungenutzte Programme komprimieren, die im Hintergrund laufen. Dies kann je nach Hardware einen geringen Einfluss auf die CPU-Auslastung haben",
     "tweaksPerformanceServiceGrouping": "Dienstgruppierungsmodus",
-    "tweaksPerformanceServiceGroupingDescription": "Empfohlen ist die Standardeinstellung für ReviOS. Verwenden Sie Forciert, um die Speichernutzung erheblich zu reduzieren. Einige Funktionen wie Xbox funktionieren jedoch möglicherweise nicht wie erwartet.",
+    "tweaksPerformanceServiceGroupingDescription": "Empfohlen ist die Standardeinstellung für chinhaeOS. Verwenden Sie Forciert, um die Speichernutzung erheblich zu reduzieren. Einige Funktionen wie Xbox funktionieren jedoch möglicherweise nicht wie erwartet.",
     "tweaksPerformanceServiceGroupingDialog": "Diese Option kann einige Dienste wie Xbox beschädigen. Verwendung auf eigene Gefahr. Sie kann rückgängig gemacht werden, indem sie wieder auf \u0027Empfohlen\u0027 gesetzt wird",
     "tweaksPerformanceLastTimeAccess": "NTFS Letzter Zugriff",
     "tweaksPerformanceLastTimeAccessDescription": "Das Deaktivieren der letzten Zugriffszeit verbessert die Leistung beim Zugriff auf Dateien und Verzeichnisse, verringert die Festplatten-I/O-Last und die Latenz",
@@ -160,5 +160,5 @@
     "tweaksUpdatesWUPage": "Seite Windows Updates ausblenden",
     "tweaksUpdatesWUPageDescription": "Das Anzeigen dieser Seite aktiviert auch Update-Benachrichtigungen",
     "tweaksUpdatesWUDrivers": "Treiber über Windows Updates installieren",
-    "tweaksUpdatesWUDriversDescription": "Um Treiber in ReviOS zu installieren, müssen Sie manuell in den Einstellungen nach Updates suchen, da automatische Windows Updates nicht unterstützt werden"
+    "tweaksUpdatesWUDriversDescription": "Um Treiber in chinhaeOS zu installieren, müssen Sie manuell in den Einstellungen nach Updates suchen, da automatische Windows Updates nicht unterstützt werden"
 }

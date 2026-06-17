@@ -1,5 +1,5 @@
 name: revitool
-description: A tool to personalize ReviOS to your needs
+description: A tool to personalize chinhaeOS to your needs
 publish_to: "none"
 
 # The version number defaults to 1.0.0 for easier development and is incremented by the build flags based on the tag

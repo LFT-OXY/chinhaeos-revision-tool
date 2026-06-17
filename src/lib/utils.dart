@@ -37,7 +37,7 @@ final String ameTemp = path.join(
   Directory.systemTemp.path,
   'AME',
   'Playbooks',
-  'Revision-ReviOS',
+  'Revision-chinhaeOS',
 );
 
 final String tempReviPath = path.join(

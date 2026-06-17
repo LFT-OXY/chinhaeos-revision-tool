@@ -35,7 +35,7 @@
     "pageSettings": "Beállítások",
     "suggestionBoxPlaceholder": "Beállítás keresése",
     "homeWelcome": "Üdvözli a Revision",
-    "homeDescription": "Egy eszköz a ReviOS igényeinek megfelelő testreszabásához",
+    "homeDescription": "Egy eszköz a chinhaeOS igényeinek megfelelő testreszabásához",
     "homeReviLink": "Revision megtekintése",
     "homeReviFAQLink": "GYIK megtekintése",
     "homeCardGithub": "GitHub",
@@ -101,7 +101,7 @@
     "tweaksPerformanceMemoryCompression": "Memóriatömörítés",
     "tweaksPerformanceMemoryCompressionDescription": "Spóroljon memóriát a háttérben futó, nem használt programok tömörítésével. A hardvertől függően kis hatással lehet a CPU-használatra",
     "tweaksPerformanceServiceGrouping": "Szolgáltatás csoportosítási mód",
-    "tweaksPerformanceServiceGroupingDescription": "Az Ajánlott az alapértelmezett a ReviOS-hez. Használja a Kényszerítettet a memóriahasználat jelentős csökkentéséhez; azonban néhány funkció, mint például az Xbox, nem biztos, hogy a várt módon működik.",
+    "tweaksPerformanceServiceGroupingDescription": "Az Ajánlott az alapértelmezett a chinhaeOS-hez. Használja a Kényszerítettet a memóriahasználat jelentős csökkentéséhez; azonban néhány funkció, mint például az Xbox, nem biztos, hogy a várt módon működik.",
     "tweaksPerformanceServiceGroupingDialog": "Ez a beállítás tönkretehet bizonyos szolgáltatásokat, például az Xboxot. Saját felelősségre használja. Visszaállítható az \u0027Ajánlott\u0027-ra váltással",
     "tweaksPerformanceLastTimeAccess": "NTFS Last Access Time",
     "tweaksPerformanceLastTimeAccessDescription": "A Last Time Access letiltása javítja a fájl- és könyvtárelérési teljesítményt, csökkenti a lemez I/O terhelését és a késleltetést",
@@ -160,5 +160,5 @@
     "tweaksUpdatesWUPage": "Windows Updates oldal elrejtése",
     "tweaksUpdatesWUPageDescription": "Ennek az oldalnak a megjelenítése engedélyezi a frissítési értesítéseket is",
     "tweaksUpdatesWUDrivers": "Illesztőprogramok telepítése Windows Updates-en keresztül",
-    "tweaksUpdatesWUDriversDescription": "Illesztőprogramok telepítéséhez a ReviOS-ben manuálisan kell keresnie frissítéseket a Beállításokban, mivel az automatikus Windows frissítések nem támogatottak"
+    "tweaksUpdatesWUDriversDescription": "Illesztőprogramok telepítéséhez a chinhaeOS-ben manuálisan kell keresnie frissítéseket a Beállításokban, mivel az automatikus Windows frissítések nem támogatottak"
 }

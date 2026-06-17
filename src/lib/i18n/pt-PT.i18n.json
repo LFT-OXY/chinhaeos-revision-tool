@@ -35,7 +35,7 @@
     "pageSettings": "Definições",
     "suggestionBoxPlaceholder": "Procurar uma definição",
     "homeWelcome": "Bem-vindo ao Revision",
-    "homeDescription": "Uma ferramenta para personalizar o ReviOS às suas necessidades",
+    "homeDescription": "Uma ferramenta para personalizar o chinhaeOS às suas necessidades",
     "homeReviLink": "Ver Revision",
     "homeReviFAQLink": "Ver FAQ",
     "homeCardGithub": "GitHub",
@@ -101,7 +101,7 @@
     "tweaksPerformanceMemoryCompression": "Compressão de Memória",
     "tweaksPerformanceMemoryCompressionDescription": "Poupe memória comprimindo programas não utilizados em execução em segundo plano. Pode ter um pequeno impacto no uso da CPU dependendo do hardware",
     "tweaksPerformanceServiceGrouping": "Modo de Agrupamento de Serviços",
-    "tweaksPerformanceServiceGroupingDescription": "Recomendado é a predefinição para ReviOS. Use Forçado para reduzir significativamente o uso de memória; no entanto, algumas funcionalidades como Xbox podem não funcionar como esperado.",
+    "tweaksPerformanceServiceGroupingDescription": "Recomendado é a predefinição para chinhaeOS. Use Forçado para reduzir significativamente o uso de memória; no entanto, algumas funcionalidades como Xbox podem não funcionar como esperado.",
     "tweaksPerformanceServiceGroupingDialog": "Esta opção pode quebrar alguns serviços, como a Xbox. Use por sua conta e risco. Pode ser revertido alterando de volta para \u0027Recomendado\u0027",
     "tweaksPerformanceLastTimeAccess": "NTFS Last Access Time",
     "tweaksPerformanceLastTimeAccessDescription": "Desativar o Last Time Access melhora o desempenho de acesso a ficheiros e diretórios, reduz a carga de E/S do disco e a latência",
@@ -160,5 +160,5 @@
     "tweaksUpdatesWUPage": "Ocultar a página Windows Updates",
     "tweaksUpdatesWUPageDescription": "Mostrar esta página também ativará as notificações de atualização",
     "tweaksUpdatesWUDrivers": "Instalação de drivers através do Windows Updates",
-    "tweaksUpdatesWUDriversDescription": "Para instalar drivers no ReviOS, precisa de verificar manualmente as atualizações nas Definições, pois as Atualizações Automáticas do Windows não são suportadas"
+    "tweaksUpdatesWUDriversDescription": "Para instalar drivers no chinhaeOS, precisa de verificar manualmente as atualizações nas Definições, pois as Atualizações Automáticas do Windows não são suportadas"
 }

@@ -35,7 +35,7 @@
     "pageSettings": "設定",
     "suggestionBoxPlaceholder": "尋找設定",
     "homeWelcome": "歡迎使用 Revision",
-    "homeDescription": "根據您的需求個人化 ReviOS 的工具",
+    "homeDescription": "根據您的需求個人化 chinhaeOS 的工具",
     "homeReviLink": "查看 Revision",
     "homeReviFAQLink": "查看常見問題",
     "homeCardGithub": "GitHub",
@@ -97,7 +97,7 @@
     "tweaksPerformanceMemoryCompression": "記憶體壓縮",
     "tweaksPerformanceMemoryCompressionDescription": "透過壓縮在背景執行的未使用程式來節省記憶體。根據硬體，可能對 CPU 使用率產生輕微影響",
     "tweaksPerformanceServiceGrouping": "服務分組模式",
-    "tweaksPerformanceServiceGroupingDescription": "推薦是 ReviOS 的預設值。使用強制可顯著減少記憶體使用；但是，某些功能（如 Xbox）可能無法按預期工作。",
+    "tweaksPerformanceServiceGroupingDescription": "推薦是 chinhaeOS 的預設值。使用強制可顯著減少記憶體使用；但是，某些功能（如 Xbox）可能無法按預期工作。",
     "tweaksPerformanceServiceGroupingDialog": "此選項可能會破壞某些服務，例如 Xbox。使用風險自負。可以透過將其變更回「推薦」來恢復",
     "tweaksPerformanceLastTimeAccess": "NTFS 上次存取時間",
     "tweaksPerformanceLastTimeAccessDescription": "停用上次存取時間可提高檔案和目錄存取效能，減少磁碟 I/O 負載和延遲",
@@ -160,5 +160,5 @@
     "tweaksUpdatesWUPage": "隱藏 Windows 更新頁面",
     "tweaksUpdatesWUPageDescription": "顯示此頁面也將啟用更新通知",
     "tweaksUpdatesWUDrivers": "透過 Windows 更新安裝驅動程式",
-    "tweaksUpdatesWUDriversDescription": "要在 ReviOS 中安裝驅動程式，您需要在設定中手動檢查更新，因為不支持自動 Windows 更新"
+    "tweaksUpdatesWUDriversDescription": "要在 chinhaeOS 中安裝驅動程式，您需要在設定中手動檢查更新，因為不支持自動 Windows 更新"
 }

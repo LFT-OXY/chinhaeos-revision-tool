@@ -35,7 +35,7 @@
     "pageSettings": "Paramètres",
     "suggestionBoxPlaceholder": "Trouver un paramètre",
     "homeWelcome": "Bienvenue sur Revision",
-    "homeDescription": "Un outil pour personnaliser ReviOS selon vos besoins",
+    "homeDescription": "Un outil pour personnaliser chinhaeOS selon vos besoins",
     "homeReviLink": "Découvrir Revision",
     "homeReviFAQLink": "Consulter la FAQ",
     "homeCardGithub": "GitHub",
@@ -101,7 +101,7 @@
     "tweaksPerformanceMemoryCompression": "Compression de la mémoire",
     "tweaksPerformanceMemoryCompressionDescription": "Économisez de la mémoire en compressant les programmes inutilisés en arrière-plan. Peut avoir un petit impact sur l\u0027utilisation du CPU selon le matériel",
     "tweaksPerformanceServiceGrouping": "Mode de regroupement de services",
-    "tweaksPerformanceServiceGroupingDescription": "Recommandé est la valeur par défaut pour ReviOS. Utilisez Force pour réduire significativement l\u0027utilisation de la mémoire ; cependant, certaines fonctionnalités comme Xbox peuvent ne pas fonctionner comme prévu.",
+    "tweaksPerformanceServiceGroupingDescription": "Recommandé est la valeur par défaut pour chinhaeOS. Utilisez Force pour réduire significativement l\u0027utilisation de la mémoire ; cependant, certaines fonctionnalités comme Xbox peuvent ne pas fonctionner comme prévu.",
     "tweaksPerformanceServiceGroupingDialog": "Cette option peut casser certains services, comme Xbox. Utilisez-la à vos propres risques. Elle peut être annulée en la remettant sur \u0027Recommandé\u0027",
     "tweaksPerformanceLastTimeAccess": "NTFS Last Access Time",
     "tweaksPerformanceLastTimeAccessDescription": "La désactivation de Last Time Access améliore les performances d\u0027accès aux fichiers et répertoires, réduit la charge E/S disque et la latence",
@@ -160,5 +160,5 @@
     "tweaksUpdatesWUPage": "Masquer la page Windows Updates",
     "tweaksUpdatesWUPageDescription": "Afficher cette page activera également les notifications de mise à jour",
     "tweaksUpdatesWUDrivers": "Installation des pilotes via Windows Updates",
-    "tweaksUpdatesWUDriversDescription": "Pour installer des pilotes dans ReviOS, vous devez vérifier manuellement les mises à jour dans Paramètres, car les mises à jour automatiques Windows ne sont pas prises en charge"
+    "tweaksUpdatesWUDriversDescription": "Pour installer des pilotes dans chinhaeOS, vous devez vérifier manuellement les mises à jour dans Paramètres, car les mises à jour automatiques Windows ne sont pas prises en charge"
 }

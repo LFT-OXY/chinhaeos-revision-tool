@@ -35,7 +35,7 @@
     "pageSettings": "Ayarlar",
     "suggestionBoxPlaceholder": "Bir ayar bul",
     "homeWelcome": "Revision\u0027a Hoş Geldiniz",
-    "homeDescription": "ReviOS\u0027u ihtiyaçlarınıza göre kişiselleştirmek için bir araç",
+    "homeDescription": "chinhaeOS\u0027u ihtiyaçlarınıza göre kişiselleştirmek için bir araç",
     "homeReviLink": "Revision\u0027a Göz Atın",
     "homeReviFAQLink": "SSS\u0027ye Göz Atın",
     "homeCardGithub": "GitHub",
@@ -97,7 +97,7 @@
     "tweaksPerformanceMemoryCompression": "Bellek Sıkıştırma",
     "tweaksPerformanceMemoryCompressionDescription": "Arka planda çalışan kullanılmayan programları sıkıştırarak bellekten tasarruf edin. Donanıma bağlı olarak CPU kullanımı üzerinde küçük bir etkisi olabilir",
     "tweaksPerformanceServiceGrouping": "Hizmet Gruplandırma Modu",
-    "tweaksPerformanceServiceGroupingDescription": "Önerilen, ReviOS için varsayılandır. Bellek kullanımını önemli ölçüde azaltmak için Zorla\u0027yı kullanın; ancak, Xbox gibi bazı özellikler beklendiği gibi çalışmayabilir.",
+    "tweaksPerformanceServiceGroupingDescription": "Önerilen, chinhaeOS için varsayılandır. Bellek kullanımını önemli ölçüde azaltmak için Zorla\u0027yı kullanın; ancak, Xbox gibi bazı özellikler beklendiği gibi çalışmayabilir.",
     "tweaksPerformanceServiceGroupingDialog": "Bu seçenek Xbox gibi bazı hizmetleri bozabilir. Riski size ait olmak üzere kullanın. \u0027Önerilen\u0027e geri değiştirilerek geri alınabilir",
     "tweaksPerformanceLastTimeAccess": "NTFS Last Access Time",
     "tweaksPerformanceLastTimeAccessDescription": "Last Time Access\u0027i devre dışı bırakmak, dosya ve dizin erişim performansını artırır, disk G/Ç yükünü ve gecikmeyi azaltır",
@@ -160,5 +160,5 @@
     "tweaksUpdatesWUPage": "Windows Updates sayfasını gizle",
     "tweaksUpdatesWUPageDescription": "Bu sayfayı göstermek güncelleme bildirimlerini de etkinleştirecektir",
     "tweaksUpdatesWUDrivers": "Windows Updates üzerinden sürücü kurulumu",
-    "tweaksUpdatesWUDriversDescription": "ReviOS'ta sürücü yüklemek için Ayarlar'da güncellemeleri manuel olarak kontrol etmeniz gerekir, çünkü otomatik Windows Güncellemeleri desteklenmemektedir"
+    "tweaksUpdatesWUDriversDescription": "chinhaeOS'ta sürücü yüklemek için Ayarlar'da güncellemeleri manuel olarak kontrol etmeniz gerekir, çünkü otomatik Windows Güncellemeleri desteklenmemektedir"
 }
