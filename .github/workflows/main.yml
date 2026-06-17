@@ -127,5 +127,6 @@ jobs:
           file: RevisionTool-Setup.exe
           asset_name: RevisionTool-Setup.exe
           tag: ${{ github.ref }}
+          release_name: ${{ github.ref_name }}
           overwrite: true
           body: "SHA256: `${{ env.SHA256_HASH }}`"
