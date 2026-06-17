@@ -8,6 +8,10 @@ part 'performance_service.g.dart';
 
 enum ServiceGrouping { forced, recommended, disabled }
 
+/// 电源计划模式:关闭 / 标准(Revision)/ 极限(AMD)。
+/// 三态互斥,精确表达整张卡片的状态,不存在"启用却没选计划"的非法态。
+enum PowerPlanMode { off, standard, extreme }
+
 const _userSvcSplitDisabled = {'CDPUserSvc_', 'OneSyncSvc_', 'WpnUserService_'};
 
 final _recommendedSplitDisabled = {
@@ -105,15 +109,26 @@ const _defaultSplitDisabled = {
 
 @CliCommand(name: 'performance', description: 'Performance tweaks')
 abstract class PerformanceService {
-  @CliToggle(
+  // 电源计划:关闭 / 标准 / 极限 三态,CLI 暴露为枚举子命令
+  // `powerplan off|standard|extreme`。标准 = Revision 方案,极限 = AMD 方案。
+  @CliEnumSubCommand(
     name: 'powerplan',
-    status: 'statusReviPowerPlan',
-    enable: 'enableReviPowerPlan',
-    disable: 'disableReviPowerPlan',
+    values: PowerPlanMode.values,
+    status: 'powerPlanMode',
+    setMethod: 'setPowerPlanMode',
   )
+  PowerPlanMode get powerPlanMode;
+  Future<void> setPowerPlanMode(PowerPlanMode target);
+
+  // 标准(Revision)方案的建/拆——作为积木被 setPowerPlanMode 与 C-States 复用
   bool get statusReviPowerPlan;
   Future<void> enableReviPowerPlan();
   Future<void> disableReviPowerPlan();
+
+  // 极限(AMD)方案的建/拆
+  bool get statusAmdPowerPlan;
+  Future<void> enableAmdPowerPlan();
+  Future<void> disableAmdPowerPlan();
 
   @CliToggle(
     name: 'powerplan-states-c6',
@@ -435,6 +450,233 @@ if (Test-Path "HKLM:\SYSTEM\ControlSet001\Control\Power\User\PowerSchemes\6a93ec
     );
 
     await _setActiveSchemeCurrent();
+  }
+
+  /// 极限(AMD)方案是否存在:查其固定 GUID 的 FriendlyName。
+  @override
+  bool get statusAmdPowerPlan {
+    return WinRegistryService.readString(
+          .localMachine,
+          r'SYSTEM\ControlSet001\Control\Power\User\PowerSchemes\86a387f0-74ce-462e-ae7a-729ba6867cb0',
+          'FriendlyName',
+        ) !=
+        null;
+  }
+
+  /// 当前电源计划模式:极限优先判定,其次标准,都不存在则关闭。
+  /// 因切换时会删除另一方案,任一时刻最多只有一个存在,判定天然互斥。
+  @override
+  PowerPlanMode get powerPlanMode {
+    if (statusAmdPowerPlan) return PowerPlanMode.extreme;
+    if (statusReviPowerPlan) return PowerPlanMode.standard;
+    return PowerPlanMode.off;
+  }
+
+  /// 三态切换:建一个、删另一个;off 则两个都拆,系统回落 Balanced。
+  @override
+  Future<void> setPowerPlanMode(PowerPlanMode target) {
+    return switch (target) {
+      .standard => () async {
+        await disableAmdPowerPlan();
+        await enableReviPowerPlan();
+      }(),
+      .extreme => () async {
+        await disableReviPowerPlan();
+        await enableAmdPowerPlan();
+      }(),
+      .off => () async {
+        await disableReviPowerPlan();
+        await disableAmdPowerPlan();
+      }(),
+    };
+  }
+
+  /// 极限(AMD)方案:克隆卓越性能模板 → 固定 GUID → 原样写入源 .pow 的全部 17 项。
+  ///
+  /// 17 项均直接来自 CustomConfig.pow 的解析,按"改了什么就写什么"原样照搬,
+  /// 其中若干项因"最小处理器状态=100"而条件性冗余(已逐条注明),保留以保证
+  /// 与源文件 1:1 一致、不引入二次裁剪的判断风险。仅写 AC(插电)档,与 Revision 一致。
+  @override
+  Future<void> enableAmdPowerPlan() async {
+    // 覆盖边界情况:先清掉可能残留的同 GUID 方案
+    await disableAmdPowerPlan();
+
+    const command = r'''
+powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61 86a387f0-74ce-462e-ae7a-729ba6867cb0
+powercfg -changename 86a387f0-74ce-462e-ae7a-729ba6867cb0 "Revision - Extreme (AMD)" "Maximum performance profile ported from the AMD power plan."
+powercfg -s 86a387f0-74ce-462e-ae7a-729ba6867cb0
+''';
+    await runPSCommand(command, encodedCommand: true);
+
+    // 方案根路径(不含尾部反斜杠);各项 = s + r'\<子组>\<设置>'
+    const String s =
+        r'SYSTEM\ControlSet001\Control\Power\User\PowerSchemes\86a387f0-74ce-462e-ae7a-729ba6867cb0';
+
+    await TrustedInstallerServiceImpl().executeWithTrustedInstaller(
+      () async => Future.wait([
+        // ── 无分组 ──
+        // 电源计划类型 PERSONALITY = 高性能(纯元数据标签,无功能)
+        WinRegistryService.writeRegistryValue(
+          Registry.localMachine,
+          s + r'\245d8541-3943-4422-b025-13a784f679b7',
+          'ACSettingIndex',
+          1,
+        ),
+
+        // ── 处理器电源管理 (54533251) ──
+        // 最小处理器状态 PROCTHROTTLEMIN = 100 → 锁满频、空闲不降频(核心项)
+        WinRegistryService.writeRegistryValue(
+          Registry.localMachine,
+          s +
+              r'\54533251-82be-4824-96c1-47b60b740d00\893dee8e-2bef-41e0-89c6-b55d0929964c',
+          'ACSettingIndex',
+          100,
+        ),
+        // 性能提升策略 PERFINCPOL = 3(IdealAggressive,最激进升频)
+        WinRegistryService.writeRegistryValue(
+          Registry.localMachine,
+          s +
+              r'\54533251-82be-4824-96c1-47b60b740d00\465e1f50-b610-473a-ab58-00d1077dc418',
+          'ACSettingIndex',
+          3,
+        ),
+        // 性能提升阈值 PERFINCTHRESHOLD = 1(占用 1% 即升频)
+        WinRegistryService.writeRegistryValue(
+          Registry.localMachine,
+          s +
+              r'\54533251-82be-4824-96c1-47b60b740d00\06cadf0e-64ed-448a-8927-ce7bf90eb35d',
+          'ACSettingIndex',
+          1,
+        ),
+        // 性能提升阈值·核心类1 = 1(P 核同样激进升频)
+        WinRegistryService.writeRegistryValue(
+          Registry.localMachine,
+          s +
+              r'\54533251-82be-4824-96c1-47b60b740d00\06cadf0e-64ed-448a-8927-ce7bf90eb35e',
+          'ACSettingIndex',
+          1,
+        ),
+        // 核心停泊最小核心数·核心类1 CPMINCORES1 = 100 → P 核不停泊
+        WinRegistryService.writeRegistryValue(
+          Registry.localMachine,
+          s +
+              r'\54533251-82be-4824-96c1-47b60b740d00\0cc5b647-c1df-4637-891a-dec35c318584',
+          'ACSettingIndex',
+          100,
+        ),
+        // 允许节流状态 THROTTLING = 0 → 关 T-states(现代平台基本无感,冗余项)
+        WinRegistryService.writeRegistryValue(
+          Registry.localMachine,
+          s +
+              r'\54533251-82be-4824-96c1-47b60b740d00\3b04d4fd-1cc7-4f23-ab1c-d1337819c4bb',
+          'ACSettingIndex',
+          0,
+        ),
+        // 空闲降低阈值 IDLEDEMOTE = 100 → 抑制深度空闲(降延迟)
+        WinRegistryService.writeRegistryValue(
+          Registry.localMachine,
+          s +
+              r'\54533251-82be-4824-96c1-47b60b740d00\4b92d758-5a24-4851-a470-815d78aee119',
+          'ACSettingIndex',
+          100,
+        ),
+        // 性能时间检查间隔 = 5000(min=100 下意义极小,冗余项,忠实照搬)
+        WinRegistryService.writeRegistryValue(
+          Registry.localMachine,
+          s +
+              r'\54533251-82be-4824-96c1-47b60b740d00\4d2b0152-7d5c-498b-88e2-34345392a2c5',
+          'ACSettingIndex',
+          5000,
+        ),
+        // 核心停泊降低策略 = 1(不停泊时空转,冗余项)
+        WinRegistryService.writeRegistryValue(
+          Registry.localMachine,
+          s +
+              r'\54533251-82be-4824-96c1-47b60b740d00\71021b41-c749-4d21-be74-a00f335d582b',
+          'ACSettingIndex',
+          1,
+        ),
+        // 异类线程调度策略 = 0(所有处理器;仅混合架构 CPU 有效)
+        WinRegistryService.writeRegistryValue(
+          Registry.localMachine,
+          s +
+              r'\54533251-82be-4824-96c1-47b60b740d00\93b8b6dc-0698-4d1c-9ee4-0644e900c85d',
+          'ACSettingIndex',
+          0,
+        ),
+        // 核心停泊提升策略 = 1(不停泊时空转,冗余项)
+        WinRegistryService.writeRegistryValue(
+          Registry.localMachine,
+          s +
+              r'\54533251-82be-4824-96c1-47b60b740d00\c7be0679-2817-4d69-9d02-519a537ed0c6',
+          'ACSettingIndex',
+          1,
+        ),
+        // 核心停泊并发余量阈值 = 5(不停泊时空转,冗余项)
+        WinRegistryService.writeRegistryValue(
+          Registry.localMachine,
+          s +
+              r'\54533251-82be-4824-96c1-47b60b740d00\f735a673-2066-4f80-a0c5-ddee0cf1bf5d',
+          'ACSettingIndex',
+          5,
+        ),
+
+        // ── USB (2a737441) ──
+        // USB 选择性挂起 = 0 → 外设不休眠,降输入/音频延迟
+        WinRegistryService.writeRegistryValue(
+          Registry.localMachine,
+          s +
+              r'\2a737441-1930-4402-8d77-b2bebba308a3\48e6b7a6-50f5-4782-a5d4-53bb8f07e226',
+          'ACSettingIndex',
+          0,
+        ),
+        // USB3 链路电源管理 = 0(关)
+        WinRegistryService.writeRegistryValue(
+          Registry.localMachine,
+          s +
+              r'\2a737441-1930-4402-8d77-b2bebba308a3\d4e98f31-5ffe-4ce1-be31-1b38b384c009',
+          'ACSettingIndex',
+          0,
+        ),
+
+        // ── Idle Resiliency (2e601130) ──
+        // Deep Sleep = 0(禁用深度睡眠 → 降唤醒延迟)
+        WinRegistryService.writeRegistryValue(
+          Registry.localMachine,
+          s +
+              r'\2e601130-5351-4d9d-8e04-252966bad054\d502f7ee-1dc7-4efd-a55d-f04b6f5c0545',
+          'ACSettingIndex',
+          0,
+        ),
+
+        // ── 显示 (7516b95f) ──
+        // 关闭显示器超时 = 0(永不息屏;非性能项,按"原样照搬"保留)
+        WinRegistryService.writeRegistryValue(
+          Registry.localMachine,
+          s +
+              r'\7516b95f-f776-4464-8c53-06167f40cc99\3c0bc021-c8a8-4e07-a973-6b14cbcb2b7e',
+          'ACSettingIndex',
+          0,
+        ),
+      ]),
+    );
+    await _setActiveSchemeCurrent();
+  }
+
+  @override
+  Future<void> disableAmdPowerPlan() async {
+    // 需先激活 Balanced 才能删除当前激活的方案(与 disableReviPowerPlan 一致)
+    const command = r'''
+powercfg -s 381b4222-f694-41f0-9685-ff5bb260df2e
+if ($LASTEXITCODE -ne 0) {
+  powercfg -restoreindividualdefaultscheme 381b4222-f694-41f0-9685-ff5bb260df2e
+}
+powercfg -s 381b4222-f694-41f0-9685-ff5bb260df2e
+if (Test-Path "HKLM:\SYSTEM\ControlSet001\Control\Power\User\PowerSchemes\86a387f0-74ce-462e-ae7a-729ba6867cb0") {
+  powercfg -delete 86a387f0-74ce-462e-ae7a-729ba6867cb0
+}
+''';
+    await runPSCommand(command, encodedCommand: true);
   }
 
   @override
@@ -1169,8 +1411,8 @@ PerformanceService performanceService(Ref ref) {
 }
 
 @riverpod
-bool reviPowerPlanStatus(Ref ref) {
-  return ref.watch(performanceServiceProvider).statusReviPowerPlan;
+PowerPlanMode powerPlanModeStatus(Ref ref) {
+  return ref.watch(performanceServiceProvider).powerPlanMode;
 }
 
 @riverpod

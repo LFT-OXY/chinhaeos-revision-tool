@@ -39,6 +39,7 @@ class CardHighlight extends StatelessWidget {
     this.children,
     this.onPressed,
     this.initiallyExpanded = false,
+    this.expanded,
     this.backgroundColor,
   }) : assert(
          icon == null || image == null,
@@ -58,6 +59,10 @@ class CardHighlight extends StatelessWidget {
   final VoidCallback? onPressed;
 
   final bool initiallyExpanded;
+
+  /// 受控展开:非 null 时,其布尔值变化会驱动卡片展开(true)/收起(false)。
+  /// 为 null(默认)时沿用 [initiallyExpanded] 的"仅首帧"行为,现有调用方不受影响。
+  final bool? expanded;
 
   final Color? backgroundColor;
 
@@ -102,6 +107,7 @@ class CardHighlight extends StatelessWidget {
     return _ExpandableCard(
       pageStorageKey: pageStorageKey,
       initiallyExpanded: initiallyExpanded,
+      expanded: expanded,
       leadingWidget: leadingWidget,
       label: label,
       description: description,
@@ -117,6 +123,7 @@ class _ExpandableCard extends ConsumerStatefulWidget {
   const _ExpandableCard({
     required this.pageStorageKey,
     required this.initiallyExpanded,
+    this.expanded,
     required this.leadingWidget,
     required this.label,
     required this.description,
@@ -128,6 +135,7 @@ class _ExpandableCard extends ConsumerStatefulWidget {
 
   final int pageStorageKey;
   final bool initiallyExpanded;
+  final bool? expanded;
   final Widget leadingWidget;
   final String label;
   final String? description;
@@ -178,7 +186,12 @@ class _ExpandableCardState extends ConsumerState<_ExpandableCard> {
             child: Padding(
               padding: isLight ? const .all(1.5) : .zero,
               child: Expander(
-                initiallyExpanded: widget.initiallyExpanded,
+                // 受控展开:expanded 非空时,其布尔值变化触发 Expander 重建,
+                // 以新的 initiallyExpanded 生效(off↔on 切换时驱动展开/收起)。
+                key: widget.expanded != null
+                    ? ValueKey<bool>(widget.expanded!)
+                    : null,
+                initiallyExpanded: widget.expanded ?? widget.initiallyExpanded,
                 enabled: widget.children != null,
                 icon: widget.children != null
                     ? null
