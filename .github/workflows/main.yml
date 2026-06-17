@@ -14,8 +14,10 @@ jobs:
       - uses: actions/checkout@v4
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: 3.45.0-0.1.pre
-          channel: 'beta'
+          # 锁定出 Dart 3.11.5 的 stable 版本：Dart 3.12+ 的 FFI AOT 编译器有 bug
+          # （_verifyAndReplaceNativeCallableIsolateLocal 崩溃），3.11.5 不受影响
+          flutter-version: 3.41.9
+          channel: 'stable'
           cache: true
 
       - name: Print toolchain versions
